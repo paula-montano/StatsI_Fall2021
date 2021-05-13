@@ -1,1 +1,1 @@
-# StatsI_Fall2021
+# Applied Statistical Analysis I (Fall 2021)
