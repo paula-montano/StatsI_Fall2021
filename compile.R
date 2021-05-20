@@ -41,4 +41,4 @@ lapply(c("cregg", "texreg", "ggplot2", "ggpubr"), pkgTest)
 # set working directory that contains replication
 # recommend just putting in Downloads folder
 # JZ: 
-setwd("~/Dropbox/Trinity//conjoint_nonresponse")
+setwd("~/Dropbox/Trinity/teaching/ASDS/website")

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Statistical theory for linear models (Gauss-Markov) | Applied Statistical Analysis I</title>
+  <meta name="description" content="3 Statistical theory for linear models (Gauss-Markov) | Applied Statistical Analysis I" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Statistical theory for linear models (Gauss-Markov) | Applied Statistical Analysis I" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Statistical theory for linear models (Gauss-Markov) | Applied Statistical Analysis I" />
+  
+  
+  
+
+<meta name="author" content="Jeffrey Ziegler, Department of Political Science, Trinity College Dublin" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="what-is-an-estimator-ols-estimation.html"/>
+<link rel="next" href="ml-estimation-and-hypothesis-testing.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Statistical Analysis I</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module description</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i>Readings</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i>1 Probability models</a><ul>
+<li class="chapter" data-level="" data-path="probability-models.html"><a href="probability-models.html#readings-1"><i class="fa fa-check"></i>Readings</a></li>
+<li class="chapter" data-level="" data-path="probability-models.html"><a href="probability-models.html#lab"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="what-is-an-estimator-ols-estimation.html"><a href="what-is-an-estimator-ols-estimation.html"><i class="fa fa-check"></i>2 What is an estimator? OLS estimation</a></li>
+<li class="chapter" data-level="" data-path="statistical-theory-for-linear-models-gauss-markov.html"><a href="statistical-theory-for-linear-models-gauss-markov.html"><i class="fa fa-check"></i>3 Statistical theory for linear models (Gauss-Markov)</a></li>
+<li class="chapter" data-level="" data-path="ml-estimation-and-hypothesis-testing.html"><a href="ml-estimation-and-hypothesis-testing.html"><i class="fa fa-check"></i>4 ML estimation and hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="interval-estimation-variance-decomposition-goodness-of-fit-general-linear-hypotheses-anova.html"><a href="interval-estimation-variance-decomposition-goodness-of-fit-general-linear-hypotheses-anova.html"><i class="fa fa-check"></i>5 Interval estimation, variance decomposition, goodness of fit, General linear hypotheses, ANOVA</a></li>
+<li class="chapter" data-level="" data-path="exam.html"><a href="exam.html"><i class="fa fa-check"></i>6 Exam</a></li>
+<li class="chapter" data-level="" data-path="interactive-effects-influential-data.html"><a href="interactive-effects-influential-data.html"><i class="fa fa-check"></i>8 Interactive effects, Influential data</a></li>
+<li class="chapter" data-level="" data-path="non-normal-disturbances-data-transformation.html"><a href="non-normal-disturbances-data-transformation.html"><i class="fa fa-check"></i>9 Non-normal disturbances, data transformation</a></li>
+<li class="chapter" data-level="" data-path="heteroskedasticity-serial-correlation.html"><a href="heteroskedasticity-serial-correlation.html"><i class="fa fa-check"></i>10 Heteroskedasticity, Serial correlation</a></li>
+<li class="chapter" data-level="" data-path="model-misspecification-causal-interpretation-of-regression-models.html"><a href="model-misspecification-causal-interpretation-of-regression-models.html"><i class="fa fa-check"></i>11 Model misspecification (Causal interpretation of regression models)</a></li>
+<li class="chapter" data-level="" data-path="sls-multicollinearity.html"><a href="sls-multicollinearity.html"><i class="fa fa-check"></i>12 2SLS, multicollinearity</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Statistical Analysis I</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-theory-for-linear-models-gauss-markov" class="section level1">
+<h1>3 Statistical theory for linear models (Gauss-Markov)</h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="what-is-an-estimator-ols-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ml-estimation-and-hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
