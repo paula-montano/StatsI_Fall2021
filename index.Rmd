@@ -2,9 +2,9 @@
 title: "Applied Statistical Analysis I"
 author: "Jeffrey Ziegler, Department of Political Science, Trinity College Dublin"
 date: "2021-2022"
-site: bookdown::bookdown_site
 documentclass: book
-bibliography: "bibliography.bib"
+site: bookdown::bookdown_site
+bibliography: bibliography.bib
 ---
 
 # Module description {-}
