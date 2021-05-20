@@ -1,1 +1,1 @@
-# 5 Testing and Debugging in Python
+# 5 Interval estimation, variance decomposition, goodness of fit, General linear hypotheses, ANOVA

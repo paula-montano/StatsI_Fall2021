@@ -1,1 +1,1 @@
-# 3 Control Flow in Python
+# 3 Statistical theory for linear models (Gauss-Markov)

@@ -1,1 +1,1 @@
-# 10 Data Wrangling in R
+# 10 Heteroskedasticity, Serial correlation

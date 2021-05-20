@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 What is Computation? | Computer Programming for Social Scientists</title>
+  <meta name="description" content="1 What is Computation? | Computer Programming for Social Scientists" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 What is Computation? | Computer Programming for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 What is Computation? | Computer Programming for Social Scientists" />
+  
+  
+  
+
+<meta name="author" content="Tom Paskhalis, Department of Politican Science, Trinity College Dublin" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="object-types-in-python.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computer Programming for Social Scientists</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this course</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="what-is-computation.html"><a href="what-is-computation.html"><i class="fa fa-check"></i>1 What is Computation?</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-computation.html"><a href="what-is-computation.html#readings"><i class="fa fa-check"></i>Readings</a></li>
+<li class="chapter" data-level="" data-path="what-is-computation.html"><a href="what-is-computation.html#lab"><i class="fa fa-check"></i>Lab</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="object-types-in-python.html"><a href="object-types-in-python.html"><i class="fa fa-check"></i>2 Object Types in Python</a></li>
+<li class="chapter" data-level="" data-path="control-flow-in-python.html"><a href="control-flow-in-python.html"><i class="fa fa-check"></i>3 Control Flow in Python</a></li>
+<li class="chapter" data-level="" data-path="functions-in-python.html"><a href="functions-in-python.html"><i class="fa fa-check"></i>4 Functions in Python</a></li>
+<li class="chapter" data-level="" data-path="testing-and-debugging-in-python.html"><a href="testing-and-debugging-in-python.html"><i class="fa fa-check"></i>5 Testing and Debugging in Python</a></li>
+<li class="chapter" data-level="" data-path="data-wrangling-in-python.html"><a href="data-wrangling-in-python.html"><i class="fa fa-check"></i>6 Data Wrangling in Python</a></li>
+<li class="chapter" data-level="" data-path="fundamentals-of-r-programming-i.html"><a href="fundamentals-of-r-programming-i.html"><i class="fa fa-check"></i>8 Fundamentals of R Programming I</a></li>
+<li class="chapter" data-level="" data-path="fundamentals-of-r-programming-ii.html"><a href="fundamentals-of-r-programming-ii.html"><i class="fa fa-check"></i>9 Fundamentals of R Programming II</a></li>
+<li class="chapter" data-level="" data-path="data-wrangling-in-r.html"><a href="data-wrangling-in-r.html"><i class="fa fa-check"></i>10 Data Wrangling in R</a></li>
+<li class="chapter" data-level="" data-path="performance-and-complexity.html"><a href="performance-and-complexity.html"><i class="fa fa-check"></i>11 Performance and Complexity</a></li>
+<li class="chapter" data-level="" data-path="working-with-apis.html"><a href="working-with-apis.html"><i class="fa fa-check"></i>12 Working with APIs</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computer Programming for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="what-is-computation" class="section level1">
+<h1>1 What is Computation?</h1>
+<p>In the first week we will cover the core concepts such as computers, programming languages and algorithms.</p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<ul>
+<li>Guttag. Chapters 1-2.1, pp. 1–15</li>
+<li>Wing, Jeannette M. 2006. “Computational Thinking.” Communications of the ACM, Communications of the ACM, 49 (3): 33–35. doi: <a href="https://doi.org/10.1145/1118178.1118215">10.1145/1118178.1118215</a></li>
+</ul>
+</div>
+<div id="lab" class="section level2">
+<h2>Lab</h2>
+<ul>
+<li>Installation of Python and Git</li>
+<li>Introduction to Jupyter Lab and alternative IDEs</li>
+<li>Submission of assignments to GitHub</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="object-types-in-python.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
