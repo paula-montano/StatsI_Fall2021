@@ -1,0 +1,39 @@
+---
+title: "Computer Programming for Social Scientists"
+author: "Tom Paskhalis, Department of Politican Science, Trinity College Dublin"
+date: "2021-2022"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: "bibliography.bib"
+---
+
+# About this course {-}
+
+TBA
+
+## Materials {-}
+
+The following texts provide a good introduction to Python and R programming with a focus on
+data analysis applications:
+
+- Guttag, John. 2021 *Introduction to Computation and Programming Using Python: With Application to Computational Modeling and Understanding Data*. 3rd ed. Cambridge, MA: The MIT Press
+
+- Matloff, Norman. 2011. *The Art of R Programming: A Tour of Statistical Software Design*. San Francisco, CA: No Starch Press.
+
+- McKinney, Wes. 2017. *Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython*. 2nd ed. Sebastopol, CA: O'Reilly Media
+
+- Sweigart, Al. 2019. *Automate the Boring Stuff with Python*. 2nd ed. San Francisco, CA: No Starch Press
+
+- Wickham, Hadley, and Garrett Grolemund. 2017. [*R for Data Science: Import, Tidy, Transform, Visualize, and Model Data*](http://r4ds.had.co.nz/). Sebastopol, CA: O'Reilly Media.
+
+Additional online resources:
+
+- [Python For You and Me](https://pymbook.readthedocs.io/en/latest/)
+
+- [Python Wikibook](https://en.wikibooks.org/wiki/Python_Programming)
+
+- [Python 3 documentation](https://docs.python.org/3/) (intermediate and advanced)
+
+- [R documentation](https://rdrr.io/)
+
+- [R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)

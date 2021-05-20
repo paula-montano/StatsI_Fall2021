@@ -1,0 +1,13 @@
+# bookdown::pdf_book:
+#   citation_package: biblatex
+#   keep_tex: yes
+bookdown::gitbook:
+  # citation_package: biblatex
+  number_sections: false
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Computer Programming for Social Scientists</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown">Published with bookdown</a></li>
