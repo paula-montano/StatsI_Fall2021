@@ -7,7 +7,9 @@ site: bookdown::bookdown_site
 bibliography: bibliography.bib
 ---
 
-# Module description {-}
+# Syllabus {-}
+
+## Module description {-}
 
 The first course in the statistics sequence introduces the linear regression model as a fundamental tool in political analysis. The course underscores applications with the kind of data that are likely to be encountered in applied research. We will cover the assumptions that underlie the linear regression model, issues of estimation and inference, and methods used to diagnose and correct gross violations of linear regression assumptions, mostly relying on R to carry out computations. My expectation is that at the end of the semester you will be savvy readers of published research and tasteful users of linear models; especially, I hope that you will understand the role that different assumptions play in the construction of linear models.
 
