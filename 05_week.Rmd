@@ -1,1 +1,0 @@
-# 5 Interval estimation, variance decomposition, goodness of fit, General linear hypotheses, ANOVA
