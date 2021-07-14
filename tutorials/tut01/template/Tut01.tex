@@ -1,0 +1,201 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Tutorial 1}
+\date{Week 3, Fall 2021}
+\author{Applied Stats/Quant Methods 1}
+
+\begin{document}
+	\maketitle
+	
+%	\section*{Instructions}
+%	\begin{itemize}
+%		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+%		\item Your homework should be submitted electronically on Canvas in \texttt{.pdf} form.
+%		\item This problem set is due before 8:00 on Monday, February 8, 2021. No late assignments will be accepted.
+%		\item Total available points for this homework is 100.
+%	\end{itemize}
+%	
+%	\vspace{1cm}
+%
+
+\section{Conditional Probabilities}
+
+(From DeGroot, p.145) Each student in a certain high school was classified according to her year in school (freshman, sophomore, junior, or senior) and according to the number of times that she had visited a certain museum (never, once, or more than once).  The proportions of students in the various classifications are given in the following table:
+
+\begin{center}
+	\begin{tabular}{lccc}
+		& & & More\\
+		& & & than\\
+		& Never & Once & once\\
+		\hline
+		Freshmen  & 0.08 & 0.10 & 0.04\\
+		Sophomores  & 0.04 & 0.10 & 0.04\\
+		Juniors		& 0.04 & 0.20 & 0.09\\
+		Seniors		& 0.02 & 0.15 & 0.10\\
+	\end{tabular}
+\end{center}
+
+\begin{enumerate}[(a)]
+	\item If a student selected at random from the high school is a junior, what is the probability that she has never visited the museum? 
+	\item If a student selected at random from the high school has visited the museum three times, what is the probability that she is a senior? 
+\end{enumerate}
+
+\begin{enumerate}[(a)]
+	\item If a student selected at random from the high school is a junior, what is the probability that she has never visited the museum?
+	
+	
+	\item If a student selected at random from the high school has visited the museum three times, what is the probability that she is a senior?
+	
+	
+\end{enumerate}
+
+
+\section{Joint and Conditional Probabilities}
+
+(Adapted from DeGroot, p.146) Suppose that in the population of US college students the joint distribution of test scores $Y$ on mathematical and musical aptitudes is bivariate normal with the following parameters:
+\[
+\mathbf{Y} \sim \mathcal{N}\left( 
+\begin{bmatrix}    350  \\     300 \end{bmatrix},~~
+\begin{bmatrix} 20 & 15 \\ 15 & 25 \end{bmatrix}
+\right)
+\]
+Use \texttt{R} to draw 2,500 simulations from this joint probability density function and answer the following questions (use the \texttt{mvrnorm} function in the \texttt{MASS} library):
+
+\begin{enumerate}[(a)]
+	\item Approximately what proportion of college students obtain a score greater than 355 on the mathematics tests? (The mean math score is 350) 
+	\item If a student's score on the music test is between 290 and 295, what is the approximated probability that his score on the mathematics test will be greater than 350? 
+	\item If a student's score on the mathematics test is lower than 340, what is her expected test score on the music test? 
+\end{enumerate}
+
+\noindent  The following code simulates a population of 2500 colleges students and creates a dataset named \texttt{simulation}. The first column (math) of the dataset gives the math scores and the second column (music) gives the music scores of students.
+
+\vspace{.5cm}
+\lstinputlisting[language=R, firstline=52, lastline=56]{tut01.R}  
+\vspace{.5cm}
+
+\begin{enumerate}[(a)]
+	\item Approximately what proportion of college students obtain a score greater than 355 on the mathematics tests? (The mean math score is 350).
+	
+	
+	\item If a student's score on the music test is between 290 and 295, what is the approximated probability that his score on the mathematics test will be greater than 350?
+
+	
+	\item If a student's score on the mathematics test is lower than 340, what is her expected test score on the music test? 
+	
+
+\end{enumerate}
+
+\section{Cumulative Distribution Functions}
+
+(From Maindonald and Braun, p. 99) The function \texttt{pexp(x, rate=r)} can be used to compute the probability that an exponential variable is less than \texttt{x}. Suppose the time betwen accidents at an intersection can be modeled by an exponential distribution with a rate of 0.05 per day. Find the probability that the next accident will occur during the next three weeks.
+
+\section{Central Limit Theorem}
+
+(From Maindonald \& Brown, 2010, p.99) Use \texttt{R} to generate a random sample of size 100 for variable $Y$ from a normal distribution.
+
+\begin{enumerate}[(a)]
+	\item Calculate the mean and standard deviation of $Y$
+	\item Use a loop to repeat the above calculation 50 times.  Store the 50 means in a vector named \texttt{av}. Calculate the standard deviation of the values of \texttt{av}.
+	\item Create a function that performs the calculations described in (b). Run the function a few times, and plot one of the distributions of 50 means in a density plot. What form does this density have? 
+	\item Change the underlying distribution of $Y$ to a $\chi^2$ distribution (function \texttt{rchisq} in \texttt{R}) and repeat steps (a) through (c). What is the form of the density now? Explain how this exercise relates to the central limit theorem.
+\end{enumerate}
+
+%\section{Markov Chain simulation}
+%
+%(From Maindonald and Braun, p. 100) A Markov chain is a data sequence which has a special kind of dependence. For example, a fair coin is tossed repetitively by a player who begins with \$2. If ``heads'' appear, the player receives one dollar; otherwise, she pays one dollar. The game stops when the player has either \$0 or \$5. The amount of money that the player has before any coin flip can be recorded---this is a Markov chain. A possible sequence of plays is as follows:
+%
+%\vspace{.5cm}
+%\begin{tabular}{lccccccccccccc}
+%	Player's fortune:&2&1&2&3&4&3&2&3&2&3&2&1&0\\
+%	Coin toss result:&T&H&H&H&T&T&H&T&H&T&T&T& \\
+%\end{tabular}
+%\vspace{.5cm}
+%
+%Note that all we need to know in order to determine the player's fortune at any time is the fortune at the previous time as well as the coin flip result at the current time. The probability of an increase in the fortune is 0.5 and the probability of a decrease in the fortune is 0.5. The transition probabilities can be summarized in a transition matrix:
+%
+%\vspace{.5cm}
+%\[
+%P=
+%\begin{bmatrix}
+%1 & 0 & 0 & 0 & 0 & 0 \\
+%0.5& 0 & 0.5& 0 & 0 & 0 \\
+%0 & 0.5& 0 & 0.5& 0 & 0 \\
+%0 & 0 & 0.5& 0 & 0.5& 0 \\
+%0 & 0 & 0 & 0.5& 0 & 0.5\\
+%0 & 0 & 0 & 0 & 0 & 1 \\
+%\end{bmatrix}
+%\]
+%\vspace{.5cm}
+%
+%The ($i$,$j$) entry of this matrix is the probability of making a change from the value $i$ to the value $j$. Here, the possible values of $i$ and $j$ are 0,1,2,\ldots,5. According to the matrix, there is a probability of 0 of making a transition from \$2 to \$4 in one play, since the (2,4) element is 0; the probability of moving from \$2 to \$1 in one transition is 0.5, since the (2,1) element is 0.5.\\
+%
+%The following function can be used to simulate $N$ values of a Markov chain sequence, with transition matrix $P$:
+%
+%\vspace{.5cm}
+%\lstinputlisting[language=R, firstline=62, lastline=70]{tut01.R}  
+%\vspace{.5cm}
+%
+%
+%Simulate 15 values of the coin flip game, starting with an initial value of \$2. Repeat the simulation many times. What is, approximately, the expected length of the game, that is, the number of rounds that we would expect to elapse between the beginning of the game and the round at which the player has \$0 or \$5? (\textit{Hint}: To run the \texttt{Markov} function you need to call \texttt{Markov()}, with appropriate arguments inside the parenthesis. You will also need to build the matrix \texttt{P} in \texttt{R}, using the \texttt{matrix} function.) 
+
+\end{document}
