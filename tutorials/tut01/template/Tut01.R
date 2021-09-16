@@ -44,7 +44,6 @@ lapply(c(), pkgTest)
 # set working directory to current parent folder
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-
 #####################
 # Problem 2
 #####################
@@ -54,17 +53,3 @@ means <- c(350, 300)
 covariance <- matrix(c(20,15,15,25), ncol=2)
 simulation <- data.frame(mvrnorm(2500, means, covariance))
 names(simulation) <- c("math", "music")
-
-#####################
-# Problem 4
-#####################
-
-Markov <- function (N=100, initial.value=1, P){
-  X <- numeric(N)
-  X[1] <- initial.value + 1    # States 0:5; subscripts 1:6
-  n <- nrow(P)
-  for (i in 2:N){
-    X[i] <- sample(1:n, size=1, prob=P[X[i-1],])
-  }
-  X-1
-}
