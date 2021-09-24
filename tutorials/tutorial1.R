@@ -1,6 +1,6 @@
-#####################################################
-## Lab 1: Sampling Distributions, t-distribution, CIs
-#####################################################
+##########################################################
+## Tutorial 1: Sampling Distributions, t-distribution, CIs
+##########################################################
 
 #### Goals
 #### 1. Working with probability distribution functions in R (pnorm and qnorm)
