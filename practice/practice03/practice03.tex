@@ -1,0 +1,140 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Tutorial 3}
+\date{Week 3, Fall 2021}
+\author{Applied Stats/Quant Methods 1}
+
+\begin{document}
+	\maketitle
+	
+%	\section*{Instructions}
+%	\begin{itemize}
+%		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+%		\item Your homework should be submitted electronically on Canvas in \texttt{.pdf} form.
+%		\item This problem set is due before 8:00 on Monday, February 8, 2021. No late assignments will be accepted.
+%		\item Total available points for this homework is 100.
+%	\end{itemize}
+%	
+%	\vspace{1cm}
+%
+
+\section{Estimating Regression Coefficients ``by hand''}
+
+Based on the values given in Table~\ref{table}, find the estimates $\hat{\alpha}$, $\hat{\beta}_{1}$, and $\hat{\beta}_{2}$ of $\alpha$, $\beta_{1}$, and $\beta_{2}$ in the following two population regression models:
+\begin{align*}
+y_{i} &= \alpha + \beta_{1} x_{1i} \\
+y_{i} &= \alpha + \beta_{1} x_{1i} + \beta_{2} x_{2i} 
+\end{align*}
+Do not use computer software to run a regression.  Rather, estimate $\hat{\alpha}$, $\hat{\beta}_{1}$ and $\hat{\beta}_{2}$ ``by hand'', i.e., by plugging the relevant values into the estimator functions.  Does the model provide a ``reasonable'' linear approximation to the data?
+
+\begin{table}[h]
+	\caption{Data for exercise 3}\label{table}
+	\begin{center}
+		\begin{tabular}{rrrr}
+			\hline
+			\emph{i} & $x_{1i}$ & $x_{2i}$ & $y_{i}$\\ \hline
+			1   &    0.55& 17.85 &--21.84\\
+			2   &   35.18& 23.25 & 79.13\\
+			3   &   31.75& 19.92 & 77.11\\
+			4   &   29.20&  9.36 & 92.36\\
+			5   &  --17.21& 19.01 &--94.33\\
+			6   &    7.06& 10.07 & 18.48\\
+			7   &   15.26&  8.68 & 52.34\\
+			8   &   20.47& 18.10 & 41.44\\
+			9   &   22.17&  8.07 & 79.28\\
+			10  &   11.89& 15.40 & 10.11\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\newpage
+
+\section{OLS Regression Formula}
+
+Show that the formula for the LS estimator of the slope, which we saw in class as:
+\[
+\hat{\beta} = \frac{n\sum_{i=1}^{n}X_{i}Y_{i} - \sum_{i=1}^{n}X_{i}\sum_{i=1}^{n}Y_{i}}{n\sum_{i=1}^{n}X_{i}^{2} - \left(\sum_{i=1}^{n}X_{i}\right)^{2}}
+\]
+Can be rewritten as:
+\begin{equation*}
+\hat{\beta} = \frac{\sum_{i=1}^{n}(X_{i}-\bar{X})(Y_{i}-\bar{Y})}{\sum_{i=1}^{n}(X_{i}-\bar{X})^{2}}
+\end{equation*}
+
+
+\section{Mechanics of OLS}
+
+A linear regression model of average income ($y$, log scale) conditional on prestige ($x$) for 102 professions yields the following quantities:
+\[ \bar{y}=8.66~~~~~~~\Sigma_{i=1}^n (y_i - \bar{y})^2 = 35.33 \]
+\[ \bar{x}=46.83~~~~~~\Sigma_{i=1}^n (x_i - \bar{x})^2 = 29895.43 \]
+\[ \Sigma_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) = 761.61\] 
+Compute the LS estimates and variances of $\beta_{0}$ and $\beta_{1}$ in the model $y = \beta_{0} + \beta_{1} x + \epsilon$. 
+
+\section{Confidence Intervals of Coefficient Estimates}
+
+Load the \texttt{car} library.  Construct 87\% confidence intervals for all coefficient estimates of the following least-squares regression analyses (name of the dataset in parenthesis):
+\begin{enumerate}[(a)]
+	\item \texttt{tfr} $\sim$ \texttt{contraceptors} (\texttt{Robey.dat}) 
+	\item \texttt{education} $\sim$ \texttt{income} + \texttt{young} + \texttt{urban}  (\texttt{Anscombe.dat}) 
+\end{enumerate}
+
+\end{document}
