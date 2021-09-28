@@ -1,0 +1,121 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Tutorial 2}
+\date{Week 4, Fall 2021}
+\author{Applied Stats/Quant Methods 1}
+
+\begin{document}
+	\maketitle
+	
+%	\section*{Instructions}
+%	\begin{itemize}
+%		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+%		\item Your homework should be submitted electronically on Canvas in \texttt{.pdf} form.
+%		\item This problem set is due before 8:00 on Monday, February 8, 2021. No late assignments will be accepted.
+%		\item Total available points for this homework is 100.
+%	\end{itemize}
+%	
+%	\vspace{1cm}
+%
+
+
+\section{Bias and Efficiency}
+
+This problem requires that you go over the concepts of ``bias'' and ``efficiency'' in Kmenta. In \texttt{R}, draw a random sample of 1,000 observations from a normal distribution with $\mu=100$ and $\sigma=25$ and define these observations as the population of interest.  Then draw 50 samples of 50 observations each from this population.  Use each of these samples to estimate \emph{mean} and \emph{median} of the population distribution.  Then describe the sampling distribution of means and medians after 1, 10, and 50 samples: Are mean and median unbiased estimators of the center of the population distribution?  Are they both equally efficient? (Hint: You may want to look at the \texttt{R} documentation for functions such as \texttt{rnorm}, \texttt{sample}, and \texttt{replicate}.)
+
+
+
+\section{The $t$ Distribution}
+
+The following questions are about Student's \emph{t} distribution.  The first questions could be answered from readily-available tables of the \emph{t} distribution, but please work on them using the relevant \texttt{R} functions (\texttt{qt()}, \texttt{rt()}, and \texttt{pt()}.)
+
+\begin{enumerate}[(a)]
+	\item Describe the purpose of each of these \texttt{R} functions (i.e., \texttt{qt()}, \texttt{rt()}, and \texttt{pt()}). 
+	\item Consider a random variable $t$ that is distributed Student-t with 20 degrees of freedom.  What is the probability that a draw from $t$ would be greater than 1.45? 
+	\item What is the probability that the absolute value of a draw from $t$, $|t|$, would be greater than 1.45? 
+	\item What are the quantiles of a $t_{5}$ distribution for a two-tailed hypothesis test at the 89\% confidence level? 
+	\item Call the quantiles in the previous exercise $-c$ and $c$. Sample $n=1000$ draws from a $t_{5}$-distributed variable.  How many of these draws are in fact larger than $|c|$? 
+\end{enumerate}
+
+
+\section{Hypothesis Testing}
+
+\begin{enumerate}[(a)]
+	\item (From DeGroot 9.5) Suppose that a random sample $X_1, ... , X_n$ is to be taken from the normal distribution with unknown mean $\mu$ and unknown variance $\sigma^2$, and the hypotheses to be tested are \[H_0: ~ \mu\leq 3, ~~ H_1: ~ \mu > 3.\]
+	
+	Suppose also that the sample size $n$ is 17, and it is found from the observed values in the sample that $\bar X_n =3.2$ and $(1/n)\sum_{i=1}^{n}(X_i-\bar X_n)^2 = 0.09$. Calculate the value of the appropriate statistic, and find the corresponding $p$-value. 
+\end{enumerate}
+
+
+\begin{enumerate}[(b)]
+	\item Consider the conditions for (a), but suppose now that the hypotheses to be tested are \[H_0: ~ \mu = 3.1, ~~ H_1: ~ \mu \neq 3.1.\]
+	
+	Suppose, as in (a), that the sample size $n$ is 17, and it is found from the observed values in the sample that $\bar X_n =3.2$ and $(1/n)\sum_{i=1}^{n}(X_i-\bar X_n)^2 = 0.09$. Calculate the value of the appropriate statistic, and find the corresponding $p$-value. 
+\end{enumerate}
+
+
+\section{Building Confidence Intervals}
+
+Go to this \href{www.stat.wvu.edu/SRS/Modules/CI/cholesterol.html}{website} and take a look at the “confidence interval applet” therein. Write an R function that takes as input user- defined values for $\mu$, $n$, $\sigma$, and $\alpha$ and returns 100 realizations of confidence intervals. In other words, write \texttt{R} code to replicate what the applet does.
+
+\end{document}
