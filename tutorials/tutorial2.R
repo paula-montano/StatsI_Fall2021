@@ -1,255 +1,185 @@
-##########################################################
-## Tutorial 1: Sampling Distributions, t-distribution, CIs
-##########################################################
+###########################################
+# Tutorial 2: Hypothesis tests and R basics
+###########################################
 
-#### Goals
-#### 1. Working with probability distribution functions in R (pnorm and qnorm)
-#### 2. Introduce the t-distribution functions
-#### 3. Review confidence intervals and calculate them in R
+#### Goals:
+#### 1. Revise/learn some R data skills: read in, manipulate, visualise
+#### 2. Perform a simple hypothesis test
 
-###############
-# Distributions
-###############
+#################
+# Loading in data
+#################
 
-## Go to the help file
-help(Normal)
+#Let's use last week's Trump dataset again. We want to read it in to R, so we'll use 
+#the read.csv() function. We'll supply a url as the argument, and create an object.
 
+Trump <- read.csv("https://raw.githubusercontent.com/ASDS-TCD/StatsI_Fall2021/main/datasets/TrumpApproval.csv")
 
-## 1. To generate random numbers from a normal distribution,
-##    use rnorm(n=, mean=, sd=)
+#We now have an object in our environment window which we can explore. We can do this
+#using several different functions. 
 
-vec1 <- rnorm(100000, mean=0, sd=1)  # 100000 random numbers with mean=0 and sd=1
-vec1
+#### Exercise
+#Try calling the following on Trump.
 
-plot(density(vec1),
-     main="Distribution of vec1",
-     xlab="")
+class() #What class is Trump? Supply the object name as an argument
+typeof() #What is Trump a *type of*? Supply the object name as an argument
 
-vec2 <- rnorm(5000, mean=50, sd=6)   # 5000 random numbers with mean=50 and sd=6
-vec3 <- rnorm(5000, mean=35, sd=10)  # 5000 random numbers with mean=35 and sd=10
+#Data.frames and lists are containers. To see what other objects are contained in a
+#list or data.frame, we can use the following.
 
-plot(density(vec2), 
-     main="Distribution of vec2 and vec3",
-     xlab="",
-     col="red",
-     xlim=c(0,100))
-lines(density(vec3), lty=2, col="blue")
+objects () 
+ls() #These two functions are the same. How many objects are contained inside Trump?
 
+str() #A more elaborate summary of the *structure* of an object can be obtained with
+#this function. Supply the object name as an argument
+ls.str() #This function combines the ls() and str() functions. Try it. How does it
+#differ from str()?
 
-## 2: dnorm(x=, mean=, sd=) returns the value of the probability density function, 
-##    or the height of a density curve, given x.
+Trump_ls <- ls(Trump) #R is an object oriented language. You can make objects from 
+#the output of functions. This can sometimes be useful in solving problems.
+class(Trump_ls)
+typeof(Trump_ls)
+is.vector(Trump_ls) 
 
-dnorm(0, mean=0, sd=1)
-dnorm(-1, mean=0, sd=1)
-dnorm(1, mean=0, sd=1)
+###################
+# Manipulating Data
+###################
 
-# How to plot a normal curve using dnorm()
-x.range <- seq(-4, 4, by=0.0001)                       # specify the range of the x-axis
-plot(x.range, dnorm(x=x.range, mean=0, sd=1), 
-     type="l",                                         # choose type=line
-     main="Normal Distribution with mean=0 and sd=1",
-     ylab="density",
-     lwd=2,
-     xaxt="n")
-axis(1, at=-3:3, labels=-3:3)
+#Now that we've loaded in our dataset, if we want to perform any analysis, we will
+#need to be able to manipulate it.
 
+Trump_Gallup <- Trump[Trump$survey_house == "Gallup",]
+Trump_Gallup <- subset(Trump, survey_house == "Gallup")
 
+#These two commands do exactly the same thing. The first subsets our data using 
+#square brackets, the second uses the subset() function, which takes the arguments
+#of an object to be subsetted, and the logical expression on which to keep rows.
 
-## 3. pnorm(q=, mean=, sd=) returns a probability of drawing q or smaller from 
-##    a normal distribution.
+#### Exercise
+#Using square brackets or the subset() function, create subsets of Trump for FOX and
+#Pew. You may find the unique() function useful...
 
-pnorm(0, mean=0, sd=1)
-pnorm(-1, mean=0, sd=1)
-pnorm(1, mean=0, sd=1)
-pnorm(-1.96, mean=0, sd=1)
+Trump_FOX <- subset(Trump, survey_house == "FOX")
+Trump_Pew <- subset(Trump, survey_house == "Pew")
 
-# What's the probability of drawing a value between -1.96 and 1.96?
-pnorm(1.96, mean=0, sd=1) - pnorm(-1.96, mean=0, sd=1)
-
-
-
-## 4. qnorm(p=, mean=, sd=) returns a value of the *p*th quantile.
-##    This is an inverse of pnorm().
-
-qnorm(0.5, mean=0, sd=1)
-qnorm(0.15, mean=0, sd=1)
-qnorm(0.85, mean=0, sd=1)
-qnorm(0.025, mean=0, sd=1)
-
-qnorm(c(0.025, 0.975), mean=0, sd=1)
-
-## Review the help files
-?TDist
-?Normal
-
-
-## Recall: t-Distribution is similar to normal distribution, but with fatter tails
-## In R, the t-distribution functions are normalized to mean = 0 and sd = 1
-## You have to specify degrees of freedom
-
-## Visualize the two different distributions by taking 1 million random draws
-## Note: this is different than what you need to do in the homework!
-random_normal <- rnorm(1000000)
-random_t <- rt(1000000, df = 5)
-plot(density(random_normal), col = "blue")
-lines(density(random_t), col = "red")
-legend("topright", legend = c("Normal", "T"), col = c("blue", "red"), lty = 1)
-
-
-#### "Distribution" function (cumulative probability)
-## Same output because distributions have the same center
-pnorm(0, mean = 0, sd = 1)
-pt(0, df = 10)
-
-## but t-distribution has more volume in the tails
-pnorm(-2, mean = 0, sd = 1)
-pt(-2, df = 10)
-
-
-#### "Quantile" functions, or inverse cumulative probability distribution
-## Where is cumulative probability = .025?
-## Farther out in the tails of t-distribution 
-qnorm(.025, mean = 0, sd = 1)
-qt(.025, df = 10)
-
-
-## "Density" functions
-## Very similar density, but t-distribution is smaller in the middle...
-dnorm(0, mean = 0, sd = 1)
-dt(0, df = 10)
-
-## ... and larger in the tails...
-dnorm(-3, mean = 0, sd = 1)
-dt(-3, df = 10)
-
-## ... and even larger if we have smaller number of df
-dt(-3, df = 5)
-
-
-
-#### Using R to calculate CIs
-
-## Load the data: a subset of 2004 American National Election Study
-load("anes.Rdata")
-View(anes)
-
-## Let's say our confidence coefficient = .95
-## Calculate the appropriate confidence interval for the
-## mean level of support for how George W. Bush was
-## handling the war in Iraq (bushIraq)
-z95 <- qnorm((1 - .95)/2, lower.tail = FALSE)## (1-confidence coefficient)/2
-n <- length(na.omit(anes$bushiraq))
-sample_mean <- mean(anes$bushiraq, na.rm = TRUE)
-sample_sd <- sd(anes$bushiraq, na.rm = TRUE)
-lower_95 <- sample_mean - (z95 * (sample_sd/sqrt(n)))
-upper_95 <- sample_mean + (z95 * (sample_sd/sqrt(n)))
-confint95 <- c(lower_95, upper_95) ## What does this mean?
-
-
-## Now let's use a confidence coefficient = .99
-z99 <- qnorm((1 - .99)/2, lower.tail = FALSE)
-lower_99 <- sample_mean - (z99 * (sample_sd/sqrt(n)))
-upper_99 <- sample_mean + (z99 * (sample_sd/sqrt(n)))
-confint99 <- c(lower_99, upper_99)
-
-
-## Do our results make sense?
-confint95
-confint99
-
-### Exercises
-
-################
-# Pres. Approval
-################
-
-## 1. Read in the Trump Job Approval poll data.
-##    Variables are as follows:
-##    - Approve = Proportion of the respondents who approve Trump
-##    - survey_house = Survey company
-##    - end_date = Date the survey ended
-##    - sample_subpopulation = Sample type
-##    - observations = Number of observations
-##    - mode = Survey method
-
-
-
-## 2. Plot a histogram of the Trump job approval rates. 
-
-
-
-## 3. Suppose you only have the "Gallup" poll from "2/19/2017". If we know that
-##    the population variance is 0.25, what is your estimate of the sampling 
-##    distribution? 
-##    Hint: Find this poll using two conditions (survey_house, end_date)
-
-
-
-## 4. According to your answer in Q4, what are the 20th and 75th quantiles of 
-##    the distribution?
-
-
-
-## 5. Suppose a new poll suggests that the Trump approval rate is 47%. 
-##    According to your answer in Q4, what is the probability of a poll showing 
-##    support for Trump higher than this?
-
-
-################
-# Military coups
-################
-
-## 1. Load data using the following code
-## Read the help file
-install.packages("faraway")
-library(faraway)
-data(africa)
-?africa
-
-
-## 2. Create two subsets of the data
-## One with only countries were no military coups have occurred
-## One where any military coups have occurred
-
-
-
-
-
-
-## 3. Find a 95% confidence interval for the mean percent of voting in the last
-## elections for each subset of countries
-
-
-
-
-
-
-
-## 4. What do you learn about voter turnout in African countries from
-## these confidence intervals?
-
-
-
-
-
-
-## 5. Find the 2.5th and 97.5th percentiles of the t distribution
-## with 5 degrees of freedom
-
-
-
-
-
-
-## 6. Find the probability that x is at least two standard deviations
-## above the mean of a t-distribution with 10 degrees of freedom
-
-
-
-
-
-
-## 7. Find the density of the t-distribution with 10 degrees of 
-## freedom at x = -1.96 and x = 1.96.  Explain the output given what
-## we know about the t-distribution and the standard normal distribution
-
+###########
+# Analysing
+###########
+
+#Now that we have our three subsets, it would be good to know something about them.
+#Let's try finding and comparing the mean approval. We could do it like this:
+
+mean(Trump_FOX$Approve)
+mean(Trump_Pew$Approve)
+mean(Trump_Gallup$Approve)
+
+#This is OK, but all we get is a printout of the means. Also, the process was quite
+#cumbersome.
+
+aggregate(Trump$Approve, by = list(Trump$survey_house), FUN = mean)
+
+#Here, we use the aggregate() function. It takes as an argument the vector you want
+#to apply another function to, here the Trump$Approve vector. We supply the function
+#we want to apply to Trump$Approve using the FUN = argument, and we use the by = 
+#argument to tell R what we want to group our operation by - here, the survey house. 
+#We need to supply a list to the by = argument, so we coerce the survey_house variable
+#using the list() function.
+
+Trump_means <- aggregate(Trump$Approve, by = list(Trump$survey_house), FUN = mean)
+class(Trump_means) #aggregate returns a data.frame
+
+Trump_means[Trump_means$Group.1 %in% c("Gallup", "Pew", "FOX"),]
+subset(Trump_means, Group.1 %in% c("Gallup", "Pew", "FOX"))
+
+#Once we have an object with all the approval means according to survey company, we
+#can easily subset that by passing a vector of the companies we want. We use the 
+#logical operator %in% to check a list of characters - handy for checking names of
+#things.
+
+#### Exercise
+#Let's try applying what we've learned using aggregate() to another column in the 
+#Trump data.frame. Polling companies use different methods to survey voters. Let's
+#see if these different methods result in different means.
+
+#Let's find the right variable
+ls.str()
+
+#We can call the unique() function on our variable to see the different methods
+unique()
+
+#Now use aggregate() to get the mean of the approval rate as grouped by this
+#variable. Remember to assign it to an object.
+object1 <- aggregate(data.frame$var, by = list(data.frame$other), FUN = fun)
+
+######################
+# Visualising our Data
+######################
+
+#We can use R's base plotting functions to see the results of our analysis. Let's 
+#try this for the polling companies.
+
+barplot(Trump_means$x)
+#What kind of a distribution do we see here?
+
+barplot(Trump_means$x, 
+        main = "Trump Approval Ratings by Survey Company", #Our title
+        names.arg = Trump_means$Group.1, #The vector with our axis names. Could use Trump_means[,2]
+        horiz = TRUE, #Flipping our axes
+        las = 1) #Rotating our axis labels 
+#We can use additional arguments to barplot() to edit our axis labels, etc. There's
+#no really good way of fitting all our labels on here, but it gives you an idea.
+
+#### Exercise
+#Try the same with your survey method means object.
+barplot(data.frame$x, #change the data.frame name
+        main = "Your Title Here", #change the title
+        names.arg = data.frame$Group.1, #change the data.frame name
+        horiz = TRUE,
+        las = 1) 
+
+####################
+# Hypothesis Testing
+####################
+
+#We'll finish with a hypothesis test. Let's say we think that different survey
+#methods produce different approval ratings, in a way which isn't simply due to
+#chance (or random) variation in our samples. How would we check this out? Let's
+#take the whole process step by step:
+
+#Clear our environment
+rm(list = ls())
+
+#1. Read in our dataset
+Trump <- read.csv("https://raw.githubusercontent.com/ASDS-TCD/StatsI_Fall2021/main/datasets/TrumpApproval.csv")
+
+#2. Find our variables
+str(Trump)
+unique(Trump$mode)
+summary(Trump$Approve)
+
+#3. Visualise - Exploratory Data Analysis
+#a. Aggregate our data.frame by the relevant variable
+Trump_mode <- aggregate(Trump$Approve, by = list(Trump$mode), FUN = mean)
+#b. Plot our grouped means
+bp <- barplot(Trump_mode[,2], #use square bracket subsetting to select the second col
+        names.arg = Trump_mode[,1],
+        horiz = TRUE, #Flip our axes
+        las = 1, #rotate our text to fit it in,
+        cex.names = 0.7, #make our axis text a bit smaller to fit
+        main = "Trump Mean Approval Rating by Survey Mode")
+text(bp, 0.1, round(Trump_mode[,2], 2)) #adding some text to our barplot with the mean
+#Looks like IVR/Online polls have a higher approval....
+
+#4. Formulate our null hypothesis
+#NULL HYPOTHESIS: There is no difference in means between IVR/Online polls and 
+#Other kinds of polling.
+
+#5. Test our hypothesis
+length(Trump$mode[Trump$mode == "IVR/Online"]) #how many samples do we have?
+
+Trump_IVR <- subset(Trump, Trump$mode == "IVR/Online") #make a subset of IVR
+Trump_other <- subset(Trump, Trump$mode != "IVR/Online") #make a subset of everything else
+
+Trump_null <- t.test(Trump_IVR$Approve, Trump_other$Approve, mu = 0)
+Trump_null
+#What does it all mean?!
