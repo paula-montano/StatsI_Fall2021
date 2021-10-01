@@ -1,0 +1,236 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\graphicspath{ {.//Users/user1/Documents/GitHub/StatsI_Fall2021/problemSets/PS01/} }
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Problem Set 1}
+\date{Due: October 1, 2021}
+\author{Paula Montano/Applied Stats/Quant Methods 1}
+
+\begin{document}
+	\maketitle
+	
+	\section*{Instructions}
+	\begin{itemize}
+		\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+		\item Your homework should be submitted electronically on GitHub in \texttt{.pdf} form.
+		\item This problem set is due before 8:00 on Friday October 1, 2021. No late assignments will be accepted.
+		\item Total available points for this homework is 100.
+	\end{itemize}
+	
+	\vspace{1cm}
+	\section*{Question 1 (50 points): Education}
+
+A school counselor was curious about the average of IQ of the students in her school and took a random sample of 25 students' IQ scores. The following is the data set:\\
+\vspace{.5cm}
+
+\lstinputlisting[language=R, firstline=40, lastline=40]{PS01.R}  
+
+\vspace{1cm}
+
+\begin{enumerate}
+	\item Find a 90\% confidence interval for the average student IQ in the school.\\
+
+	\texttt Confidence Interval\\	
+	\lstinputlisting[language=R, firstline=52, lastline=58]{PS1.R} 
+	
+	\texttt Answer: 
+	\texttt We estimate with 90 per cent of certainty that the average student IQ in the school can be between the range of values of 94.1 (lower level) and 102.7 (upper level).\\
+
+	
+	\item Next, the school counselor was curious  whether  the average student IQ in her school is higher than the average IQ score (100) among all the schools in the country.\\ 
+	
+	\noindent Using the same sample, conduct the appropriate hypothesis test with $\alpha=0.05$.
+\end{enumerate}
+
+\begin{enumerate}
+
+\texttt Hypothesis Testing\\ 
+\texttt Null Hypothesis: The students IQ in the school is lower than students IQ in the country.\\ 
+\texttt Alternative Hypothesis: The students IQ in the school is higher than the students IQ in the country.\\ 
+
+\lstinputlisting[language=R, firstline=68, lastline=69]{PS1.R}
+
+\noindent Answer: We cannot reject the null hypothesis as our p.value is greater than alpha = 0.05.\\
+\vspace{.5cm}
+\end{enumerate}
+
+\newpage
+
+\section*{Question 2 (50 points): Political Economy}
+
+\noindent Researchers are curious about what affects the amount of money communities spend on addressing homelessness. The following variables constitute our data set about social welfare expenditures in the USA. \\
+\vspace{.5cm}
+
+
+\begin{tabular}{r|l}
+	\texttt{State} &\emph{50 states in US} \\
+	\texttt{Y} & \emph{per capita expenditure on shelters/housing assistance in state}\\
+	\texttt{X1} &\emph{per capita personal income in state} \\
+	\texttt{X2} &  \emph{Number of residents per 100,000 that are "financially insecure" in state}\\
+	\texttt{X3} &  \emph{Number of people per thousand residing in urban areas in state} \\
+	\texttt{Region} &  \emph{1=Northeast, 2= North Central, 3= South, 4=West} \\
+\end{tabular}
+
+\vspace{.5cm}
+\noindent Explore the \texttt{expenditure} data set and import data into \texttt{R}.
+\vspace{.5cm}
+\lstinputlisting[language=R, firstline=54, lastline=54]{PS01.R}  
+\vspace{.5cm}
+\begin{itemize}
+
+\item 
+Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3}? What are the correlations among them (you just need to describe the graph and the relationships among them)?
+\vspace{.5cm}
+\item
+    \texttt 2.1. Plot 1 Relationship Y, X1\\
+    \lstinputlisting[language=R, firstline=86, lastline=90]{PS1.R}
+	
+	\includegraphics{Rplot09.png}
+	
+	\texttt Interpretation:\\
+    \texttt Plot 1 displays an upward trend. The slope also shows this positive linear relationship between X1 and Y.\\
+    \texttt This indicates a strong and positive correlation between X1 (per capita personal income) and\\ 
+	\texttt Y (per capita expenditure on shelters) in 50 States in the US. When X1 increases Y also increases.\\   
+
+	\texttt Plot 2  Relationship Y, X2\\
+	\lstinputlisting[language=R, firstline=98, lastline=102]{PS1.R}
+
+	\includegraphics{Rplot10.png}
+	
+	\texttt Interpretation:\\
+	\texttt Plot 2 displays an upward trend. This indicates a positive linear correlation\\
+	\texttt between X2 (Number of residents per 100,000 that are financially insecure) and Y (per capita expenditure on shelters) in states.\\ 
+	\texttt The slope also shows this positive relationship between X2 and Y.\\ 
+	\texttt The data indicates that the higher the number of residents that are "financially insecure" the higher is the value in per capita\\
+	\texttt expenditure on shelters.\\
+	
+	\texttt Plot 3 Relationship Y, X3\\
+	\lstinputlisting[language=R, firstline=112, lastline=116]{PS1.R}
+	
+		\includegraphics{Rplot11.png}
+		
+	\texttt Interpretation:\\
+	\texttt Plot 3 displays a positive upward trend. This indicates a linear correlation\\ 
+	\texttt between X3 (People per thousand residing in urban areas) and Y (per capita expenditure on shelters) in 50 states in US. \\
+	\texttt The slope also confirm this positive relationship between X3 and Y. Nonetheless, the strength appear to be low.\\   
+	\texttt The data indicates that the higher people residing in urban areas the greater is the value per capita in expenditure on shelters.\\  
+
+	\texttt Plot 4 Relationship X1, X2\\
+	\lstinputlisting[language=R, firstline=125, lastline=129]{PS1.R}
+
+	\includegraphics{Rplot12.png}
+	
+	\texttt Interpretation:\\
+	\texttt Plot 4 displays a positive upward trend. This indicates a weak linear correlation\\ 
+	\texttt between X1 (per capita personal income) and X2 (Residents per 100,000 that are financially insecure) in 50 states in US.\\
+	\texttt The slope also shows a positive relationship between X1 and X2. Nonetheless, the observations are spread.\\  
+
+	\texttt Plot 5 Relationship X1, X3:\\
+	\lstinputlisting[language=R, firstline=137, lastline=140]{PS1.R}
+	\includegraphics{Rplot13.png}
+	
+	\texttt Interpretation::\\
+	\texttt Plot 5 displays an upward trend. This indicates a strong linear correlation :\\
+	\texttt between X1 (per capita personal income) and X3 (People per thousand residing in urban areas) in 50 states in US.:\\ 
+	\texttt The slope indicates a positive relationship between X1 and X3. The higher the per capita personal income:\\ 
+	\texttt the higher is the number of people residing in urban areas.:\\ 
+	
+	\texttt Plot 6 relationship X2, X3
+	\lstinputlisting[language=R, firstline=149, lastline=152]{PS1.R}
+	
+		\includegraphics{Rplot14.png}
+		
+	\texttt  Interpretation:\\
+	\texttt Plot 6 displays a upward trend. This indicates a positive linear correlation\\ 
+	\texttt  between X2 (Residents per 100,000 that are financially insecure) and X3 (People per thousand residing in urban areas)\\ 
+	\texttt in 50 states in US. The slope indicates a positive relationship between X2 and X3.\\ 
+	\texttt However, the relationship is weak and the observations are spread.\\
+
+Please plot the relationship between \emph{Y} and \emph{Region}? On average, which region has the highest per capita expenditure on housing assistance?
+\vspace{.5cm}
+\item
+
+	\texttt 2.2. Plot Relationship between Y and Region\\
+	\lstinputlisting[language=R, firstline=162, lastline=165]{PS1.R}
+
+	\includegraphics{Rplot15.png}
+	
+	\texttt Answer:\\
+	\texttt On average the West Region has the highest per capita expenditure on housing assistance.\\ 
+
+Please plot the relationship between \emph{Y} and \emph{X1}? Describe this graph and the relationship. Reproduce the above graph including one more variable \emph{Region} and display different regions with different types of symbols and colors.
+\end{itemize}
+
+	\texttt 2.3. Plot Relationship between Y and X1\\
+	\lstinputlisting[language=R, firstline=172, lastline=174]{PS1.R}
+	
+		\includegraphics{Rplot16.png}
+		
+	\texttt  Interpretation:\\
+	\texttt The plot depicts a positive relationship between the variables Y (per capita expenditure on shelters) and X1 (per capita personal income).\\
+	\texttt When the value on per capita personal income increases, so does the value on per capita expenditure on housing assistance in 50 States in US.\\  
+	
+	\texttt Plot Relationship between Y and X1 by Region\\
+	\lstinputlisting[language=R, firstline=182, lastline=186]{PS1.R}	
+	
+		\includegraphics{Rplot17.png}
+\end{document}
